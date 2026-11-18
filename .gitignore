@@ -1,0 +1,24 @@
+# Dependências
+node_modules/
+
+# Arquivos de build
+dist/
+**/dist/
+
+# Logs da Manus
+.manus-logs/
+**/.manus-logs/
+
+# Logs gerais
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Arquivos de ambiente
+.env
+.env.*
+!.env.example
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db

@@ -8,10 +8,10 @@ type Professional = { id: string; name: string; specialty: string; experience: n
 type RequestData = { client: string; phone: string; vehicle: string; year: string; problem: string; notes: string };
 
 export const professionals: Professional[] = [
-  { id: "freios-abs", name: "Freios e sistemas ABS", specialty: "Especialidade da ABS Center", experience: 46, services: ["Freios", "Sistemas ABS", "Diagnóstico de frenagem", "Segurança automotiva"] },
-  { id: "revisao-preventiva", name: "Revisão e manutenção preventiva", specialty: "Cuidado completo para o seu veículo", experience: 46, services: ["Revisão preventiva", "Troca de óleo", "Filtros", "Manutenção geral"] },
-  { id: "diagnostico-automotivo", name: "Diagnóstico automotivo", specialty: "Scanner e diagnóstico computadorizado", experience: 46, services: ["Injeção eletrônica", "Motor", "Scanner", "Falhas eletrônicas"] },
-  { id: "servicos-automotivos", name: "Serviços automotivos", specialty: "Atendimento personalizado", experience: 46, services: ["Suspensão e direção", "Ar-condicionado", "Elétrica automotiva", "Troca de bateria"] },
+  { id: "freios-abs", name: "Freios e sistemas ABS", specialty: "Especialidade da ABS Center", experience: 28, services: ["Freios", "Sistemas ABS", "Diagnóstico de frenagem", "Segurança automotiva"] },
+  { id: "revisao-preventiva", name: "Revisão e manutenção preventiva", specialty: "Cuidado completo para o seu veículo", experience: 28, services: ["Revisão preventiva", "Troca de óleo", "Filtros", "Manutenção geral"] },
+  { id: "diagnostico-automotivo", name: "Diagnóstico automotivo", specialty: "Scanner e diagnóstico computadorizado", experience: 28, services: ["Injeção eletrônica", "Motor", "Scanner", "Falhas eletrônicas"] },
+  { id: "servicos-automotivos", name: "Serviços automotivos", specialty: "Atendimento personalizado", experience: 28, services: ["Suspensão e direção", "Ar-condicionado", "Elétrica automotiva", "Troca de bateria"] },
 ];
 
 const commonProblems = ["Problemas no motor", "Superaquecimento", "Vazamento de óleo", "Vazamento de água", "Falha na partida", "Carro perdendo potência", "Barulhos estranhos", "Problemas no freio", "Problemas na suspensão", "Problemas elétricos", "Bateria descarregando", "Luz de injeção acesa", "Ar-condicionado", "Problemas no câmbio", "Pneus", "Alinhamento e balanceamento"];
@@ -35,7 +35,7 @@ export default function ServiceRequestFlow({ service, onClose }: { service: Serv
   const goToCustomer = () => { if (!selectedProfessional) { setErrors(["Escolha um profissional para continuar."]); return; } setErrors([]); setStep(3); };
   const confirm = () => { const missing: string[] = []; if (!request.client.trim()) missing.push("Informe seu nome."); if (!request.phone.trim()) missing.push("Informe seu telefone."); if (!request.vehicle.trim()) missing.push("Informe o veículo."); if (!request.year.trim()) missing.push("Informe o ano do veículo."); if (!request.problem.trim()) missing.push("Descreva o problema."); if (missing.length) { setErrors(missing); return; } setErrors([]); setSuccess(true); };
   const whatsappMessage = encodeURIComponent(`Olá ABS Center, quero solicitar atendimento.\n\nEspecialidade: ${service.name}\nProblema: ${request.problem}\nAtendimento: ${selectedProfessional?.name ?? "Equipe ABS Center"}\nNome: ${request.client}\nTelefone: ${request.phone}\nVeículo: ${request.vehicle}\nAno: ${request.year}${request.notes ? `\nObservações: ${request.notes}` : ""}`);
-  const whatsappLink = `https://wa.me/5569992015975?text=${whatsappMessage}`;
+  const whatsappLink = `https://wa.me/5566992015975?text=${whatsappMessage}`;
   return <div className="fixed inset-0 z-50 flex items-end justify-center bg-[#1F2523]/75 p-0 backdrop-blur-sm sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-labelledby="service-request-title">
     <div className="relative max-h-[94vh] w-full max-w-4xl overflow-y-auto bg-[#F5F1EA] text-[#1F2523] shadow-2xl">
       <button type="button" onClick={onClose} aria-label="Fechar solicitação" className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center border border-[#1F2523]/15 bg-[#F5F1EA] transition-colors hover:border-[#E56A35] hover:text-[#E56A35]"><X size={18} /></button>
